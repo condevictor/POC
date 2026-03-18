@@ -1,6 +1,7 @@
 package io.hextree.initial
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -36,6 +37,7 @@ class MainActivity : ComponentActivity() {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
                         Button(onClick = {value += 1}) {
                             Text(text = "valor: $value")
+                            Log.i("HEXTREE", "tudo ok por aqui")
                         }
                     }
                 }
