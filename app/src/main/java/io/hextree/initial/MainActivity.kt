@@ -1,8 +1,8 @@
 package io.hextree.initial
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -14,20 +14,22 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import io.hextree.initial.ui.theme.InitialTheme
+import androidx.core.net.toUri
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        val link = Intent(Intent.ACTION_VIEW, "https://hextree.io".toUri())
         setContent {
-            var value by remember { mutableStateOf(0) }
+            var value by remember { mutableIntStateOf(0) }
             InitialTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
@@ -36,6 +38,9 @@ class MainActivity : ComponentActivity() {
                     )
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
                         Button(onClick = {value += 1}) {
+                            if(value >= 10){
+                                this@MainActivity.startActivity(link)
+                            }
                             Text(text = "valor: $value")
                             Log.i("HEXTREE", "run")
                         }
