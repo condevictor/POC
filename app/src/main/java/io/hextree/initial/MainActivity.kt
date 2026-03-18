@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
                         Button(onClick = {value += 1}) {
                             Text(text = "valor: $value")
-                            Log.i("HEXTREE", "tudo ok por aqui")
+                            Log.i("HEXTREE", "run")
                         }
                     }
                 }
