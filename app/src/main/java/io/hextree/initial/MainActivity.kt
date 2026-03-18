@@ -21,13 +21,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import io.hextree.initial.ui.theme.InitialTheme
-import androidx.core.net.toUri
+//import androidx.core.net.toUri
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        val link = Intent(Intent.ACTION_VIEW, "https://hextree.io".toUri())
+        //val link = Intent(Intent.ACTION_VIEW, "https://hextree.io".toUri())
+        val servico = Intent().apply{
+            setClassName("io.hextree.attacksurface", "io.hextree.attacksurface.services.Flag24Service")
+            action = "io.hextree.services.START_FLAG24_SERVICE"
+        }
+
+
         setContent {
             var value by remember { mutableIntStateOf(0) }
             InitialTheme {
@@ -38,11 +44,12 @@ class MainActivity : ComponentActivity() {
                     )
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
                         Button(onClick = {value += 1}) {
-                            if(value >= 10){
-                                this@MainActivity.startActivity(link)
-                            }
                             Text(text = "valor: $value")
                             Log.i("HEXTREE", "run")
+                            if(value >= 1){
+                                this@MainActivity.startService(servico)
+
+                            }
                         }
                     }
                 }
