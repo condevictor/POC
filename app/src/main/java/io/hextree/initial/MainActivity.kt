@@ -29,8 +29,16 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         //val link = Intent(Intent.ACTION_VIEW, "https://hextree.io".toUri())
         val servico = Intent().apply{
-            setClassName("io.hextree.attacksurface", "io.hextree.attacksurface.services.Flag24Service")
-            action = "io.hextree.services.START_FLAG24_SERVICE"
+            setClassName("io.hextree.attacksurface", "io.hextree.attacksurface.services.Flag25Service")
+            action = "io.hextree.services.UNLOCK1"
+        }
+        val servico2 = Intent().apply{
+            setClassName("io.hextree.attacksurface", "io.hextree.attacksurface.services.Flag25Service")
+            action = "io.hextree.services.UNLOCK2"
+        }
+        val servico3 = Intent().apply{
+            setClassName("io.hextree.attacksurface", "io.hextree.attacksurface.services.Flag25Service")
+            action = "io.hextree.services.UNLOCK3"
         }
 
 
@@ -48,6 +56,8 @@ class MainActivity : ComponentActivity() {
                             Log.i("HEXTREE", "run")
                             if(value >= 1){
                                 this@MainActivity.startService(servico)
+                                this@MainActivity.startService(servico2)
+                                this@MainActivity.startService(servico3)
 
                             }
                         }
