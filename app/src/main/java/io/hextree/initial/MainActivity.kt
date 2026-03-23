@@ -103,7 +103,7 @@ class MainActivity : ComponentActivity() {
                             value += 1
                             Log.i("HEXTREE", "Tentando bindService...")
                             if (value >= 1) {
-                                bindService(servico, serviceConnection, Context.BIND_AUTO_CREATE)
+                                bindService(servico, serviceConnection,Context.BIND_AUTO_CREATE)
                             }
                         }) {
                             Text(text = "valor: $value")
